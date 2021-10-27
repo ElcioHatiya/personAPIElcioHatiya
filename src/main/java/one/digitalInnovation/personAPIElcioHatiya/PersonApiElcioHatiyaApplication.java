@@ -18,6 +18,6 @@ public class PersonApiElcioHatiyaApplication {
 	@GetMapping
 	public String getBook() {
 
-		return "TÔ na nuvem BB! ...primeiro deploy a gente nunca esquece ";
+		return "My first API deployed OK!!! :) ";
 	}
 }
