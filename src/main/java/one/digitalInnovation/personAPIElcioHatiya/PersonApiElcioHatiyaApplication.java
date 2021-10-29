@@ -1,10 +1,12 @@
 package one.digitalInnovation.personAPIElcioHatiya;
 
+import one.digitalInnovation.personAPIElcioHatiya.dto.MessageResponse;
+import one.digitalInnovation.personAPIElcioHatiya.entity.Person;
+import one.digitalInnovation.personAPIElcioHatiya.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 
@@ -15,9 +17,20 @@ public class PersonApiElcioHatiyaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PersonApiElcioHatiyaApplication.class, args);
 	}
-	@GetMapping
-	public String getBook() {
 
-		return "My first API! Deploy OK!!! :) ";
+	private PersonRepository personRepository;
+
+	@Autowired
+	public PersonApiElcioHatiyaApplication(PersonRepository personRepository) {
+		this.personRepository = personRepository;
+	}
+
+	@PostMapping
+	public MessageResponse createPerson(@RequestBody Person person) {
+		Person savedPerson = personRepository.save(person);
+		return MessageResponse
+				.builder()
+				.message("Created Person with ID" + savedPerson.getId())
+				.build();
 	}
 }
