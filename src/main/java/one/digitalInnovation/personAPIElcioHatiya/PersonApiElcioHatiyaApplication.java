@@ -34,4 +34,11 @@ public class PersonApiElcioHatiyaApplication {
 			return personService.createPerson(person);
 		}
 
+	@GetMapping
+	public String getBook() {
+
+		return "Deploy on Heroku OK!!!  Git push -> Auto Deploy  /ElcioHatiya";
+
+	}
+
 }
